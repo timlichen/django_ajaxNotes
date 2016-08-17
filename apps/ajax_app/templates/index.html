@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax_notes</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  {% load staticfiles %}
+  <script src={% static 'ajaxNotes_static/js/script.js'%}></script>
+  <style>
+    .notePad{
+      height: 240px;
+      width: 620px;
+      overflow-y: scroll;
+    }
+    .note{
+      vertical-align: top;
+      margin: 10px;
+      display: inline-block;
+      background-color: lightblue;
+      padding: 10px;
+      height: 100px;
+      width: 100px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="notePad">
+  {% for note in notes %}
+    <div class='note'>
+      {{note.noteText}}
+    </div>
+  {% endfor %}
+</div>
+  <h1>Behold, AJAX Notes, Django!</h1>
+  <form action = {% url 'postNote'%} method = 'Post'>
+    {% csrf_token %}
+    <textarea rows="20" cols="100" name=noteText></textarea>
+    <p><input type="submit" value="Post Note"></p>
+  </form>
+</body>
+</html>
