@@ -5,4 +5,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^postNote$', views.postNote, name="postNote"),
+    url(r'^deleteNote/(?P<noteID>[0-9]+)$', views.deleteNote, name="deleteNote"),
 ]
+
+
+# (?P<noteID>[0-9])

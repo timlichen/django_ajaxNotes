@@ -29,6 +29,7 @@
   {% for note in notes %}
     <div class='note'>
       {{note.noteText}}
+      <button value = {{note.id}} name="noteID" class="delete_button">X</button>
     </div>
   {% endfor %}
 </div>

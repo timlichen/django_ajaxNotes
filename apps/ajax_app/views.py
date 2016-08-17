@@ -8,6 +8,11 @@ def index(request):
     return render(request, 'index.html', notes)
 
 def postNote(request):
-    print request.POST['noteText']
-    Notes.objects.create(noteText = request.POST['noteText'])
+    noteObj = Notes.objects.create(noteText = request.POST['noteText'])
+    noteObj = {"noteObj": noteObj}
+    return render(request, 'notesPartial.html', noteObj)
+
+def deleteNote(request, noteID):
+    print noteID;
+    Notes.objects.filter(id = noteID).delete()
     return redirect('/')
